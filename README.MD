@@ -18,6 +18,71 @@ The Office Lunch Menu Management System is a web application designed to streaml
 - Select Lunch Choice: Employees can select their preferred lunch option from the daily menu.
 
 ## Database schema
+```mermaid
+erDiagram
+    ROLES {
+        int role_id PK
+        varchar name
+        text description
+    }
+
+    PERMISSIONS {
+        int permission_id PK
+        varchar name
+        text description
+    }
+
+    ROLES_PERMISSIONS {
+        int role_permission_id PK
+        int role_id FK
+        int permission_id FK
+    }
+
+    USERS {
+        int user_id PK
+        int role_id FK
+        varchar username
+        text password_hash
+        timestamp created_at
+    }
+
+    LUNCH_OPTIONS {
+        int lunch_option_id PK
+        varchar name
+        text description
+        timestamp created_at
+    }
+
+    DAILY_MENUS {
+        int daily_menu_id PK
+        date menu_date
+        timestamp created_at
+    }
+
+    DAILY_MENU_OPTIONS {
+        int daily_menu_option_id PK
+        int daily_menu_id FK
+        int lunch_option_id FK
+    }
+
+    USER_CHOICES {
+        int user_choice_id PK
+        int user_id FK
+        int daily_menu_id FK
+        int lunch_option_id FK
+        timestamp chosen_at
+    }
+
+    ROLES ||--o{ USERS: "has"
+    ROLES ||--o{ ROLES_PERMISSIONS: "defines"
+    PERMISSIONS ||--o{ ROLES_PERMISSIONS: "assigned to"
+    USERS ||--o{ USER_CHOICES: "makes"
+    DAILY_MENUS ||--o{ DAILY_MENU_OPTIONS: "contains"
+    LUNCH_OPTIONS ||--o{ DAILY_MENU_OPTIONS: "available in"
+    DAILY_MENUS ||--o{ USER_CHOICES: "selected in"
+    LUNCH_OPTIONS ||--o{ USER_CHOICES: "chosen"
+
+```
 ## Setup instructions for both backend and frontend
 
 ### Using Docker
