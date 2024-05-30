@@ -5,4 +5,10 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "8080:80"
+      - "8081:80"
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"

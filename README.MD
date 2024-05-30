@@ -87,6 +87,11 @@ erDiagram
 
 ### Using Docker
 
+```bash
+git clone https://github.com/piru72/office-lunch-menu-management.git
+cd office-lunch-menu-management
+docker-compose up -d
+```
 
 ### Using npm
 ## Instructions on how to run the projects
