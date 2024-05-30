@@ -14,6 +14,24 @@ const getMenuOptionsForDate = (req, res) => {
     });
 }
 
+const createMenuOption = (req, res) => {
+    const requestInboundTime = getCurrentTimeWithSeconds();
+    const data = "Template for creating a menu option";
+
+    console.log(req.body);
+    
+    res.status(200).json({
+        requestInboundTime: requestInboundTime,
+        requestOutboundTime: getCurrentTimeWithSeconds(),
+        responseVerdict: "Success",
+        data: {
+            about: data,
+        },
+    });
+
+}
+
 module.exports = {
-    getMenuOptionsForDate
+    getMenuOptionsForDate,
+    createMenuOption
 };
