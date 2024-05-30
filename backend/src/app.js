@@ -5,10 +5,14 @@ const router = require('./routes/routes');
 const dotEnv = require('dotenv');
 const errorHandler = require('./handler/error');
 const responseHandler = require('./handler/response');
+const initDB = require('./config/database'); 
 
 
 // Load environment variables
 dotEnv.config();
+
+// Connect to the database
+initDB(); 
 
 // Create a new Koa application and setup middllewares
 const app = express();
@@ -25,6 +29,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 
 // Start the server
-app.listen(process.env.PORT || 8080 , () => {
-    console.log('Server is running on port 8080');
+app.listen(process.env.PORT || 8081 , () => {
+    console.log('Server is running on port 8081');
 });
