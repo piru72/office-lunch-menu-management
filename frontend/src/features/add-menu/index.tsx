@@ -1,6 +1,7 @@
 
 import { Box, Button, HStack, Heading, Input, List, SimpleGrid, VStack, useRadio, useRadioGroup } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
+import axios from 'axios';
 
 const lunchItems = [
     "Chicken Alfredo",
@@ -47,13 +48,41 @@ function RadioCard(props) {
 }
 const AddMenu = () => {
     const options = lunchItems
-
+    let [choosenOption, setChoosenOption] = useState("Chicken Alfredo")
+    let [selectedDate, setSelectedDate] = useState("");
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'lunch-options',
         defaultValue: 'Chicken Alfredo',
-        onChange: console.log,
+        onChange: (value) => {
+            console.log(value);
+            setChoosenOption(value);
+            choosenOption = value;
+        },
+        
     })
     const group = getRootProps()
+    const onDateChange = (event) => {
+        setSelectedDate(event.target.value);
+        console.log("Selected Date: ", event.target.value);
+    };
+
+    const onSubmitButtonClick = async () => {
+        console.log("Submit button clicked")
+        // collect the input date 
+        console.log("Choosen Option: ", choosenOption)
+        console.log("Selected Date: ", selectedDate);
+
+        try {
+            const response = await axios.post('http://localhost:8081/menu', {
+                "date": selectedDate,
+                "options": choosenOption
+              });
+            console.log('Response:', response.data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+        
+    }
     return (
         <Box height="100vh" mb={10}>
             <List>
@@ -70,7 +99,7 @@ const AddMenu = () => {
                     </HStack>
 
                     <Box>
-                        <Input placeholder='Select Date and Time' size='md' type="date" />
+                        <Input placeholder='Select Date and Time' size='md' type="date" value={selectedDate} onChange={onDateChange} />
                     </Box>
 
                     <Box>
@@ -85,7 +114,7 @@ const AddMenu = () => {
                             })}
                         </SimpleGrid>
                     </Box>
-                    <Button colorScheme="teal" size="md"> Confirm todays Lunch Option</Button>
+                    <Button colorScheme="teal" size="md" onClick={onSubmitButtonClick}> Confirm todays Lunch Option</Button>
                 </VStack>
             </Box>
         </Box>
