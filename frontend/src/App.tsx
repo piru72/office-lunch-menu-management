@@ -4,6 +4,7 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel, List } from "@chakra-ui/react"
 import { Heading } from '@chakra-ui/react'
 import { Box } from '@chakra-ui/react'
 import React from 'react'
+import AddMenu from './features/add-menu/index.tsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,12 +19,7 @@ function App() {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <List>
-              <ul>
-                <li>Add Daily Menu Options: Admins can add new lunch options for specific dates.</li>
-                <li>View Employee Choices: Admins can view which employees have chosen which lunch options.</li>
-              </ul>
-            </List>
+            <AddMenu />
           </TabPanel>
           <TabPanel>
             <List>

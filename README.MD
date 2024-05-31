@@ -85,6 +85,11 @@ erDiagram
 ```
 ## Setup instructions for both backend and frontend
 
+To setup the project, you will need to have the following installed on your machine:
+- Docker (if you want to use Docker)
+- Node.js (if you want to run the project using npm)
+
+## Instructions on how to run the projects
 ### Using Docker
 
 ```bash
@@ -94,4 +99,16 @@ docker-compose up -d
 ```
 
 ### Using npm
-## Instructions on how to run the projects
+    
+```bash
+git clone https://github.com/piru72/office-lunch-menu-management.git
+cd office-lunch-menu-management
+
+cd backend
+npm install
+npm run dev
+
+cd ../frontend
+npm install
+npm run dev
+```
