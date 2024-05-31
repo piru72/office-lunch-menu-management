@@ -7,8 +7,9 @@ const menuSchema = new mongoose.Schema({
         required: true
     },
     options: {
-        type: [String],
+        type: String,
         required: true
+
     }
 });
 
@@ -22,6 +23,7 @@ menuSchema.statics.addMenuOption = async function (date, options) {
         });
 
         await newMenu.save();
+        console.log('Menu option added successfully');
 
         return newMenu;
     } catch (error) {
