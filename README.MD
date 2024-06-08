@@ -89,6 +89,19 @@ To setup the project, you will need to have the following installed on your mach
 - Docker (if you want to use Docker)
 - Node.js (if you want to run the project using npm)
 
+.env file for backend
+
+```bash
+
+JWT_SECRET = 'your_secret_key'
+PORT = 8081
+DB_NAME = 'austpicPicco'
+DB_USER = 'telltoparvez'
+DB_PASS = 'hrk4MCxQfkUFZjcH'
+MONGODB_URI = mongodb+srv://telltoparvez:hrk4MCxQfkUFZjcH@austpicpicco.pqlgqmi.mongodb.net/?retryWrites=true&w=majority&appName=austpicPicco
+
+```
+
 ## Instructions on how to run the projects
 ### Using Docker
 
